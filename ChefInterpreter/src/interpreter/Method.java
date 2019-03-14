@@ -45,13 +45,13 @@ public class Method {
 				Pattern.compile("^Take ([a-zA-Z ]+) from refrigerator.$").matcher(line),
 				Pattern.compile("^(Put|Fold) ([a-zA-Z ]+) into( the)?( (\\d+)(nd|rd|th|st))? mixing bowl.$").matcher(line),
 				Pattern.compile("^Add dry ingredients( to( (\\d+)(nd|rd|th|st))? mixing bowl)?.$").matcher(line),
-				Pattern.compile("^(Add|Remove|Combine|Divide) ([a-zA-Z ]+)( (to|into|from)( (\\d+)(nd|rd|th|st))? mixing bowl)?.$").matcher(line),
+				Pattern.compile("^(Add|Remove|Combine|Divide) ([a-zA-Z ]+)( (to( the)?|into( the)?|from( the)?)( (\\d+)(nd|rd|th|st))? mixing bowl)?.$").matcher(line),
 				Pattern.compile("^Liquefy contents of the( (\\d+)(nd|rd|th|st))? mixing bowl.$").matcher(line),
 				Pattern.compile("^Liquefy ([a-zA-Z ]+).$").matcher(line),
 				Pattern.compile("^Stir( the( (\\d+)(nd|rd|th|st))? mixing bowl)? for (\\d+) minutes.$").matcher(line),
 				Pattern.compile("^Stir ([a-zA-Z ]+) into the( (\\d+)(nd|rd|th|st))? mixing bowl.$").matcher(line),
 				Pattern.compile("^Mix( the( (\\d+)(nd|rd|th|st))? mixing bowl)? well.$").matcher(line),
-				Pattern.compile("^Clean( (\\d+)(nd|rd|th|st))? mixing bowl.$").matcher(line),
+				Pattern.compile("^Clean(( the)? (\\d+)(nd|rd|th|st))? mixing bowl.$").matcher(line),
 				Pattern.compile("^Pour contents of the( (\\d+)(nd|rd|th|st))? mixing bowl into the( (\\d+)(nd|rd|th|st))? baking dish.$").matcher(line),
 				Pattern.compile("^Set aside.$").matcher(line),
 				Pattern.compile("^Refrigerate( for (\\d+) hours)?.$").matcher(line),
@@ -103,7 +103,7 @@ public class Method {
 		}
 		else if (matchers[9].find()) {
 			type = Type.Clean;
-			mixingbowl = (matchers[9].group(2) == null ? 1 : Integer.parseInt(matchers[9].group(2))) - 1;
+			mixingbowl = (matchers[9].group(3) == null ? 1 : Integer.parseInt(matchers[9].group(3))) - 1;
 		}
 		else if (matchers[10].find()) {
 			type = Type.Pour;
